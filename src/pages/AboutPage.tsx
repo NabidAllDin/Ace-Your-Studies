@@ -1,6 +1,10 @@
 import { Award, Shield, Target, Users, Globe2, TrendingUp, CheckCircle2, Heart } from 'lucide-react';
 
-export default function AboutPage() {
+type Props = {
+  onNavigate?: (page: 'home' | 'services' | 'about' | 'samples' | 'contact') => void;
+};
+
+export default function AboutPage({ onNavigate }: Props) {
   return (
     <div className="min-h-screen bg-gray-50">
       <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
@@ -201,7 +205,10 @@ export default function AboutPage() {
           <p className="text-xl text-white/90 mb-8">
             Be part of thousands of students who achieved academic excellence with our support
           </p>
-          <button className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
+          <button 
+            onClick={() => onNavigate?.('contact')}
+            className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl"
+          >
             Get Started Today
           </button>
         </div>

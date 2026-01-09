@@ -80,7 +80,8 @@ export default function ContactPage() {
             ].map((contact, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all group"
+                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all group cursor-pointer"
+                onClick={() => contact.title === 'WhatsApp' && window.open('https://wa.link/8fagrg', '_blank')}
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${contact.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <contact.icon className="w-8 h-8 text-white" />

@@ -1,7 +1,11 @@
 import { CheckCircle, FileText, BookOpen, GraduationCap, Edit, Presentation, HeartPulse } from 'lucide-react';
 import { services } from '../data/mockData';
 
-export default function ServicesPage() {
+type Props = {
+  onNavigate?: (page: 'home' | 'services' | 'about' | 'samples' | 'contact') => void;
+};
+
+export default function ServicesPage({ onNavigate }: Props) {
   const iconMap: { [key: number]: React.ElementType } = {
     1: FileText,
     2: BookOpen,
@@ -110,7 +114,10 @@ export default function ServicesPage() {
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Don't see exactly what you need? We offer personalized academic support tailored to your specific requirements.
             </p>
-            <button className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
+            <button 
+              onClick={() => onNavigate?.('contact')}
+              className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl"
+            >
               Contact Us for Custom Solutions
             </button>
           </div>

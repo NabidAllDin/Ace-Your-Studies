@@ -67,7 +67,7 @@ export default function CostCalculator({ onClose }: CostCalculatorProps) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-gradient-to-r from-amber-500 to-orange-600 p-6 rounded-t-2xl flex justify-between items-center">
+        <div className="sticky top-0 bg-gradient-to-r from-cyan-500 to-blue-600 p-6 rounded-t-2xl flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Calculator className="w-8 h-8 text-white" />
             <h2 className="text-2xl font-bold text-white">Cost Calculator</h2>
@@ -92,7 +92,7 @@ export default function CostCalculator({ onClose }: CostCalculatorProps) {
               step="50"
               value={wordCount}
               onChange={(e) => setWordCount(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-amber-500"
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500"
             />
             <div className="flex justify-between text-xs text-gray-500 mt-1">
               <span>100</span>
@@ -107,7 +107,7 @@ export default function CostCalculator({ onClose }: CostCalculatorProps) {
             <select
               value={assignmentType}
               onChange={(e) => setAssignmentType(e.target.value as AssignmentType)}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors"
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
             >
               <option value="Essay">Essay</option>
               <option value="Report">Report</option>
@@ -138,8 +138,8 @@ export default function CostCalculator({ onClose }: CostCalculatorProps) {
                     />
                     <div className={`w-6 h-6 border-2 rounded-md transition-all ${
                       specializations[key]
-                        ? 'bg-amber-500 border-amber-500'
-                        : 'border-gray-300 group-hover:border-amber-400'
+                        ? 'bg-cyan-500 border-cyan-500'
+                        : 'border-gray-300 group-hover:border-cyan-400'
                     }`}>
                       {specializations[key] && (
                         <svg className="w-full h-full text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +165,7 @@ export default function CostCalculator({ onClose }: CostCalculatorProps) {
                   onClick={() => setCurrency(curr)}
                   className={`py-3 px-4 rounded-lg font-semibold transition-all ${
                     currency === curr
-                      ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -175,13 +175,13 @@ export default function CostCalculator({ onClose }: CostCalculatorProps) {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-6">
+          <div className="bg-gradient-to-r from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-xl p-6">
             <div className="text-center">
               <p className="text-sm text-gray-600 mb-2">Estimated Cost</p>
-              <p className="text-4xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+              <p className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                 {displayPrice()}
               </p>
-              <div className="mt-4 pt-4 border-t border-amber-200">
+              <div className="mt-4 pt-4 border-t border-cyan-200">
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <div>
                     <p className="text-gray-500">BDT</p>

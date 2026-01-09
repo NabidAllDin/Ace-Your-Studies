@@ -18,11 +18,11 @@ function App() {
       case 'home':
         return <HomePage onNavigate={setCurrentPage} />;
       case 'services':
-        return <ServicesPage />;
+        return <ServicesPage onNavigate={setCurrentPage} />;
       case 'about':
-        return <AboutPage />;
+        return <AboutPage onNavigate={setCurrentPage} />;
       case 'samples':
-        return <SamplesPage />;
+        return <SamplesPage onNavigate={setCurrentPage} />;
       case 'contact':
         return <ContactPage />;
       default:
