@@ -40,7 +40,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="bg-gradient-to-br from-amber-500 via-orange-500 to-orange-600 py-20 px-4">
+      <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             Get In Touch
@@ -58,7 +58,7 @@ export default function ContactPage() {
               {
                 icon: Mail,
                 title: 'Email Us',
-                content: 'info@aceyourstudies.com',
+                content: 'aceyourstudies.info@gmail.com',
                 subtext: 'We reply within 24 hours',
                 color: 'from-blue-500 to-cyan-600'
               },
@@ -72,9 +72,10 @@ export default function ContactPage() {
               {
                 icon: Phone,
                 title: 'WhatsApp',
-                content: '+1 (555) 123-4567',
+                content: '+880 1998-422052',
                 subtext: 'Text or call anytime',
-                color: 'from-amber-500 to-orange-600'
+                color: 'from-cyan-500 to-blue-600'
+
               }
             ].map((contact, index) => (
               <div
@@ -118,7 +119,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
                         placeholder="John Doe"
                       />
                     </div>
@@ -132,7 +133,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -148,7 +149,7 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
                       placeholder="Assignment Help Request"
                     />
                   </div>
@@ -162,7 +163,7 @@ export default function ContactPage() {
                         name="assignmentType"
                         value={formData.assignmentType}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
                       >
                         <option value="">Select type</option>
                         <option value="essay">Essay</option>
@@ -182,7 +183,7 @@ export default function ContactPage() {
                         name="wordCount"
                         value={formData.wordCount}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
                         placeholder="e.g., 2000"
                       />
                     </div>
@@ -197,7 +198,7 @@ export default function ContactPage() {
                       name="deadline"
                       value={formData.deadline}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
                     />
                   </div>
 
@@ -211,14 +212,14 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-amber-500 transition-colors resize-none"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors resize-none"
                       placeholder="Please provide details about your assignment requirements..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-amber-500 to-orange-600 text-white py-4 rounded-lg font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2"
+                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-4 rounded-lg font-bold text-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex items-center justify-center space-x-2"
                   >
                     <span>Send Message</span>
                     <Send className="w-5 h-5" />
@@ -228,15 +229,15 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-8">
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border border-amber-100">
+              <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-8 border border-cyan-100">
                 <div className="flex items-center space-x-3 mb-4">
-                  <Clock className="w-8 h-8 text-amber-600" />
+                  <Clock className="w-8 h-8 text-cyan-600" />
                   <h3 className="text-2xl font-bold text-gray-900">Response Time</h3>
                 </div>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   We typically respond to all inquiries within 24 hours. For urgent requests, please use our live chat or WhatsApp for immediate assistance.
                 </p>
-                <div className="bg-white rounded-lg p-4 border border-amber-200">
+                <div className="bg-white rounded-lg p-4 border border-cyan-200">
                   <p className="text-sm font-semibold text-gray-900 mb-2">Operating Hours:</p>
                   <p className="text-sm text-gray-600">24/7 Support Available</p>
                   <p className="text-xs text-gray-500 mt-2">We're here whenever you need us</p>
@@ -261,7 +262,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-8 text-white">
+              <div className="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl p-8 text-white">
                 <div className="flex items-center space-x-3 mb-4">
                   <MapPin className="w-8 h-8" />
                   <h3 className="text-2xl font-bold">Global Service</h3>
@@ -305,7 +306,7 @@ export default function ContactPage() {
             ].map((faq, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-100"
+                className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl p-6 border border-cyan-100"
               >
                 <h4 className="font-bold text-gray-900 mb-2">{faq.question}</h4>
                 <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>

@@ -13,7 +13,7 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="bg-gradient-to-br from-amber-500 via-orange-500 to-orange-600 py-20 px-4">
+      <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             Our Services
@@ -34,7 +34,7 @@ export default function ServicesPage() {
                   key={service.id}
                   className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
                 >
-                  <div className="bg-gradient-to-r from-amber-500 to-orange-600 p-6">
+                  <div className="bg-gradient-to-r from-cyan-500 to-blue-600 p-6">
                     <div className="flex items-center space-x-4">
                       <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
                         <Icon className="w-8 h-8 text-white" />
@@ -92,7 +92,7 @@ export default function ServicesPage() {
             ].map((discipline, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-lg p-4 text-center hover:shadow-md transition-shadow"
+                className="bg-gradient-to-br from-cyan-50 to-blue-50 border border-cyan-100 rounded-lg p-4 text-center hover:shadow-md transition-shadow"
               >
                 <p className="font-semibold text-gray-800">{discipline}</p>
               </div>
@@ -103,14 +103,14 @@ export default function ServicesPage() {
 
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-12 text-center shadow-2xl">
+          <div className="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl p-12 text-center shadow-2xl">
             <h2 className="text-4xl font-bold text-white mb-4">
               Need Custom Support?
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Don't see exactly what you need? We offer personalized academic support tailored to your specific requirements.
             </p>
-            <button className="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
+            <button className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
               Contact Us for Custom Solutions
             </button>
           </div>
@@ -148,10 +148,10 @@ export default function ServicesPage() {
               }
             ].map((process, index) => (
               <div key={index} className="flex items-start space-x-6 group">
-                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform">
+                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform">
                   {process.step}
                 </div>
-                <div className="flex-1 bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-6 border border-amber-100">
+                <div className="flex-1 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg p-6 border border-cyan-100">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{process.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{process.description}</p>
                 </div>

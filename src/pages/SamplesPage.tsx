@@ -33,7 +33,7 @@ export default function SamplesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="bg-gradient-to-br from-amber-500 via-orange-500 to-orange-600 py-20 px-4">
+      <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <BookOpen className="w-12 h-12 text-white" />
@@ -174,7 +174,7 @@ export default function SamplesPage() {
                 onClick={() => goToSlide(index)}
                 className={`transition-all duration-300 rounded-full ${
                   index === currentIndex
-                    ? 'w-12 h-3 bg-gradient-to-r from-amber-500 to-orange-600'
+                    ? 'w-12 h-3 bg-gradient-to-r from-cyan-500 to-blue-600'
                     : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                 }`}
               />
@@ -207,14 +207,14 @@ export default function SamplesPage() {
             {sampleAssignments.map((assignment) => (
               <div
                 key={assignment.id}
-                className="bg-white border-2 border-gray-200 rounded-xl overflow-hidden hover:border-amber-500 hover:shadow-xl transition-all duration-300 group"
+                className="bg-white border-2 border-gray-200 rounded-xl overflow-hidden hover:border-cyan-500 hover:shadow-xl transition-all duration-300 group"
               >
                 <div className={`h-32 bg-gradient-to-br ${assignment.coverColor} p-4 flex items-center justify-center relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                   <BookOpen className="w-12 h-12 text-white relative z-10" />
                 </div>
                 <div className="p-5">
-                  <div className="inline-block bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                  <div className="inline-block bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-semibold mb-3">
                     {assignment.type}
                   </div>
                   <h3 className="font-bold text-gray-900 mb-2 leading-tight">
@@ -241,7 +241,7 @@ export default function SamplesPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-gradient-to-r from-amber-500 to-orange-600">
+      <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 to-blue-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             Ready for Your Own Success Story?
@@ -249,7 +249,7 @@ export default function SamplesPage() {
           <p className="text-xl text-white/90 mb-8">
             Get the same quality and expertise for your assignments
           </p>
-          <button className="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
+          <button className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
             Request Your Assignment
           </button>
         </div>

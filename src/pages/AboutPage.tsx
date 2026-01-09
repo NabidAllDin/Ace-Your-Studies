@@ -3,7 +3,7 @@ import { Award, Shield, Target, Users, Globe2, TrendingUp, CheckCircle2, Heart }
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="bg-gradient-to-br from-amber-500 via-orange-500 to-orange-600 py-20 px-4">
+      <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             About Ace Your Studies
@@ -31,7 +31,7 @@ export default function AboutPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: Award, label: 'Quality First', color: 'from-amber-500 to-orange-600' },
+                { icon: Award, label: 'Quality First', color: 'from-cyan-500 to-blue-600' },
                 { icon: Shield, label: 'Integrity Always', color: 'from-blue-500 to-cyan-600' },
                 { icon: Target, label: 'Results Driven', color: 'from-green-500 to-emerald-600' },
                 { icon: Heart, label: 'Student Focused', color: 'from-rose-500 to-pink-600' }
@@ -77,7 +77,7 @@ export default function AboutPage() {
               }
             ].map((value, index) => (
               <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
-                <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mb-6">
                   <value.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
@@ -124,7 +124,7 @@ export default function AboutPage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-xl border border-amber-100 hover:shadow-lg transition-shadow"
+                className="bg-gradient-to-br from-cyan-50 to-blue-50 p-6 rounded-xl border border-cyan-100 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-start space-x-3 mb-3">
                   <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
@@ -152,7 +152,7 @@ export default function AboutPage() {
                 { icon: TrendingUp, value: '95%', label: 'Success Rate' }
               ].map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <stat.icon className="w-10 h-10 text-white" />
                   </div>
                   <p className="text-4xl font-bold text-gray-900 mb-2">{stat.value}</p>
@@ -182,7 +182,7 @@ export default function AboutPage() {
                 ].map((country, index) => (
                   <div
                     key={index}
-                    className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-3 text-center border border-amber-100"
+                    className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg p-3 text-center border border-cyan-100"
                   >
                     <p className="text-gray-800 font-semibold text-sm">{country}</p>
                   </div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-gradient-to-r from-amber-500 to-orange-600">
+      <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 to-blue-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             Join Our Success Story
@@ -201,7 +201,7 @@ export default function AboutPage() {
           <p className="text-xl text-white/90 mb-8">
             Be part of thousands of students who achieved academic excellence with our support
           </p>
-          <button className="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
+          <button className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
             Get Started Today
           </button>
         </div>

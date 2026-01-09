@@ -27,13 +27,13 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 py-20 px-4">
+      <section className="bg-gradient-to-br from-cyan-50 via-blue-50 to-yellow-50 py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Premium Academic Support You Can{' '}
-                <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                   Trust
                 </span>
               </h1>
@@ -43,14 +43,14 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <span>Get Started</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => onNavigate('samples')}
-                  className="border-2 border-amber-600 text-amber-600 px-8 py-4 rounded-lg font-semibold hover:bg-amber-50 transition-all duration-300"
+                  className="border-2 border-cyan-600 text-cyan-600 px-8 py-4 rounded-lg font-semibold hover:bg-cyan-50 transition-all duration-300"
                 >
                   View Samples
                 </button>
@@ -67,7 +67,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
                 <div className="flex items-center space-x-2 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -77,8 +77,8 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   {stats.map((stat, index) => (
-                    <div key={index} className="text-center p-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg">
-                      <stat.icon className="w-8 h-8 text-amber-600 mx-auto mb-2" />
+                    <div key={index} className="text-center p-4 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg">
+                      <stat.icon className="w-8 h-8 text-cyan-600 mx-auto mb-2" />
                       <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
                       <p className="text-sm text-gray-600">{stat.label}</p>
                     </div>
@@ -100,10 +100,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </div>
 
           <div className="relative max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-xl p-8 md:p-12 border border-amber-100">
+            <div className="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl shadow-xl p-8 md:p-12 border border-cyan-100">
               <div className="flex items-center space-x-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 fill-amber-500 text-amber-500" />
+                  <Star key={i} className="w-6 h-6 fill-cyan-500 text-cyan-500" />
                 ))}
               </div>
               <p className="text-xl text-gray-800 mb-6 leading-relaxed italic">
@@ -113,7 +113,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <div>
                   <p className="font-bold text-gray-900">{reviews[currentReview].name}</p>
                   <p className="text-gray-600">{reviews[currentReview].university}</p>
-                  <p className="text-amber-600 font-semibold">{reviews[currentReview].country}</p>
+                  <p className="text-cyan-600 font-semibold">{reviews[currentReview].country}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-sm text-gray-500">{reviews[currentReview].subject}</p>
@@ -129,7 +129,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   onClick={() => setCurrentReview(index)}
                   className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     index === currentReview
-                      ? 'bg-amber-600 w-8'
+                      ? 'bg-cyan-600 w-8'
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                 />
@@ -170,14 +170,14 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                       <p className="text-xs">{assignment.wordCount} words</p>
                     </div>
                   </div>
-                  <div className="bg-white p-4 border-t-4 border-amber-500">
+                  <div className="bg-white p-4 border-t-4 border-cyan-500">
                     <div className="flex justify-between items-center">
                       <span className="text-xs text-gray-500">{assignment.university}</span>
                       <span className="text-sm font-bold text-green-600">{assignment.grade}</span>
                     </div>
                   </div>
                   <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-xs font-semibold text-amber-600">View Details →</span>
+                    <span className="text-xs font-semibold text-cyan-600">View Details →</span>
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           <div className="text-center">
             <button
               onClick={() => onNavigate('samples')}
-              className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 inline-flex items-center space-x-2"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 inline-flex items-center space-x-2"
             >
               <span>View All Samples</span>
               <ArrowRight className="w-5 h-5" />
@@ -223,9 +223,9 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl border border-amber-100 hover:shadow-lg transition-shadow"
+                className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-xl border border-cyan-100 hover:shadow-lg transition-shadow"
               >
-                <div className="w-14 h-14 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mb-4">
                   <feature.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
@@ -236,7 +236,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-amber-500 to-orange-600 py-16 px-4">
+      <section className="bg-gradient-to-r from-cyan-500 to-blue-600 py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             Ready to Ace Your Studies?
@@ -246,7 +246,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </p>
           <button
             onClick={() => onNavigate('contact')}
-            className="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl"
+            className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl"
           >
             Contact Us Now
           </button>
