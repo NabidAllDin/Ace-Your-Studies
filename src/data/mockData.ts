@@ -91,7 +91,7 @@ export const books = [
     university: "University of Manchester",
     wordCount: 3500,
     coverColor: "from-blue-600 to-cyan-600",
-    pdfUrl: "/pdfs/marketing-strategy.pdf", // Add your PDF path here
+    pdfUrl: "/pdf/Marketing.pdf", // Add your PDF path here
   },
   {
     id: 2,

@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { BookOpen, Award, FileText, ChevronLeft, ChevronRight, X } from 'lucide-react'; // Added X icon
-import { sampleAssignments } from '../data/mockData';
+import { BookOpen, Award, FileText, ChevronLeft, ChevronRight, X } from 'lucide-react';
+// 1. Change the import to 'books'
+import { books } from '../data/mockData';
 
 export default function SamplesPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [selectedPdf, setSelectedPdf] = useState<string | null>(null); // State for modal
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
 
   useEffect(() => {
-    // Pause autoplay if a PDF is open
     if (!isAutoPlaying || selectedPdf) return;
 
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % sampleAssignments.length);
+      // 2. Update usage here
+      setCurrentIndex((prev) => (prev + 1) % books.length);
     }, 4000);
 
     return () => clearInterval(timer);
@@ -20,12 +21,14 @@ export default function SamplesPage() {
 
   const nextSlide = () => {
     setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev + 1) % sampleAssignments.length);
+    // 2. Update usage here
+    setCurrentIndex((prev) => (prev + 1) % books.length);
   };
 
   const prevSlide = () => {
     setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev - 1 + sampleAssignments.length) % sampleAssignments.length);
+    // 2. Update usage here
+    setCurrentIndex((prev) => (prev - 1 + books.length) % books.length);
   };
 
   const goToSlide = (index: number) => {
@@ -33,7 +36,6 @@ export default function SamplesPage() {
     setCurrentIndex(index);
   };
 
-  // Helper to open PDF
   const openPdf = (url: string) => {
     setIsAutoPlaying(false);
     setSelectedPdf(url);
@@ -41,7 +43,7 @@ export default function SamplesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 relative">
-      {/* PDF PREVIEW MODAL */}
+      {/* PDF Modal */}
       {selectedPdf && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div className="bg-white w-full max-w-6xl h-[90vh] rounded-xl flex flex-col shadow-2xl overflow-hidden">
@@ -68,8 +70,8 @@ export default function SamplesPage() {
         </div>
       )}
 
+      {/* Header Section ... */}
       <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
-        {/* ... (Header content remains same) ... */}
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <BookOpen className="w-12 h-12 text-white" />
@@ -83,10 +85,10 @@ export default function SamplesPage() {
         </div>
       </section>
 
+      {/* 3D Gallery Section */}
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 text-center">
-            {/* ... (Title remains same) ... */}
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               3D Book Preview Gallery
             </h2>
@@ -98,10 +100,11 @@ export default function SamplesPage() {
           <div className="relative">
             <div className="perspective-1000">
               <div className="relative h-[500px] flex items-center justify-center">
-                {sampleAssignments.map((assignment, index) => {
+                {/* 2. Update usage here: Map over 'books' */}
+                {books.map((assignment, index) => {
                   const offset = index - currentIndex;
                   const absOffset = Math.abs(offset);
-                  // ... (Transform logic remains same) ...
+
                   let transform = '';
                   let zIndex = 0;
                   let opacity = 0;
@@ -136,19 +139,16 @@ export default function SamplesPage() {
                         opacity: absOffset > 2 ? 0 : opacity,
                         pointerEvents: absOffset === 0 ? 'auto' : 'none'
                       }}
-                      // UPDATED CLICK HANDLER FOR 3D VIEW
                       onClick={() => {
                         if (absOffset === 0) {
                           openPdf(assignment.pdfUrl || '');
                         }
                       }}
                     >
-                      {/* ... (Book visual code remains exactly the same) ... */}
                       <div className="w-80 h-96 relative">
                         <div className="book-container">
                           <div className="book">
                             <div className={`book-cover bg-gradient-to-br ${assignment.coverColor} rounded-r-lg shadow-2xl p-8 flex flex-col justify-between relative overflow-hidden`}>
-                              {/* ... (Rest of book cover content) ... */}
                               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                               <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12"></div>
 
@@ -186,7 +186,6 @@ export default function SamplesPage() {
                                 </div>
                               </div>
                               
-                              {/* Add "Click to View" Hint Overlay */}
                               <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                                 <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/50 text-white font-semibold flex items-center gap-2">
                                   <BookOpen className="w-5 h-5" />
@@ -204,7 +203,6 @@ export default function SamplesPage() {
               </div>
             </div>
 
-            {/* ... (Controls remain the same) ... */}
             <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 p-4 rounded-full shadow-xl z-50 transition-all hover:scale-110"
@@ -218,10 +216,10 @@ export default function SamplesPage() {
               <ChevronRight className="w-6 h-6 text-gray-800" />
             </button>
           </div>
-          
-          {/* ... (Pagination dots remain the same) ... */}
+
           <div className="flex justify-center space-x-3 mt-12">
-            {sampleAssignments.map((_, index) => (
+            {/* 2. Update usage here */}
+            {books.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -245,9 +243,9 @@ export default function SamplesPage() {
         </div>
       </section>
 
+      {/* Grid Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          {/* ... (Details Header) ... */}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Assignment Details
@@ -258,18 +256,16 @@ export default function SamplesPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {sampleAssignments.map((assignment) => (
+            {/* 2. Update usage here */}
+            {books.map((assignment) => (
               <div
                 key={assignment.id}
-                // UPDATED CLICK HANDLER FOR GRID VIEW
                 onClick={() => openPdf(assignment.pdfUrl || '')}
                 className="bg-white border-2 border-gray-200 rounded-xl overflow-hidden hover:border-cyan-500 hover:shadow-xl transition-all duration-300 group cursor-pointer"
               >
-                {/* ... (Grid card content remains same) ... */}
                 <div className={`h-32 bg-gradient-to-br ${assignment.coverColor} p-4 flex items-center justify-center relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                   <BookOpen className="w-12 h-12 text-white relative z-10" />
-                  {/* Small visual cue for PDF */}
                   <div className="absolute bottom-2 right-2 bg-white/20 backdrop-blur-sm p-1 rounded">
                      <FileText className="w-4 h-4 text-white" />
                   </div>
@@ -302,7 +298,7 @@ export default function SamplesPage() {
         </div>
       </section>
 
-      {/* ... (Footer section and CSS styles remain same) ... */}
+      {/* Footer CTA ... */}
       <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 to-blue-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
