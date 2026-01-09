@@ -1,0 +1,200 @@
+export const reviews = [
+  {
+    id: 1,
+    name: "Emily Thompson",
+    country: "United Kingdom",
+    university: "University of Manchester",
+    rating: 5,
+    text: "Outstanding service! I was struggling with my Business Management dissertation and the team at Ace Your Studies provided exceptional support. The research was thorough, properly referenced, and I achieved a First Class grade. Highly recommend!",
+    subject: "Business Management",
+    grade: "First Class (78%)"
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    country: "Singapore",
+    university: "National University of Singapore",
+    rating: 5,
+    text: "Excellent quality work delivered ahead of deadline. My Marketing Strategy assignment was well-structured with current industry examples. The writer clearly understood the requirements and academic standards. Got an A grade!",
+    subject: "Marketing Strategy",
+    grade: "A (85%)"
+  },
+  {
+    id: 3,
+    name: "Sarah Al-Rashid",
+    country: "Saudi Arabia",
+    university: "King Saud University",
+    rating: 5,
+    text: "Very professional and reliable. They helped me with multiple nursing assignments throughout the semester. Every piece was original, well-researched, and properly formatted. My grades improved significantly!",
+    subject: "Nursing",
+    grade: "A- (82%)"
+  },
+  {
+    id: 4,
+    name: "James Wilson",
+    country: "Australia",
+    university: "University of Melbourne",
+    rating: 5,
+    text: "Impressed with the depth of analysis in my Finance report. The team demonstrated real expertise in corporate finance and delivered exactly what I needed. Communication was excellent throughout. Scored 88%!",
+    subject: "Corporate Finance",
+    grade: "High Distinction (88%)"
+  },
+  {
+    id: 5,
+    name: "Priya Sharma",
+    country: "Malaysia",
+    university: "University of Malaya",
+    rating: 5,
+    text: "Best academic support service I've used! My Psychology research paper was perfectly structured with proper APA referencing. The literature review was comprehensive and the analysis was insightful. Highly satisfied!",
+    subject: "Psychology",
+    grade: "A (87%)"
+  },
+  {
+    id: 6,
+    name: "David Martinez",
+    country: "United States",
+    university: "University of California, Berkeley",
+    rating: 5,
+    text: "Fantastic experience from start to finish. The team helped me with a complex Computer Science project report. Everything was delivered on time, well-documented, and exceeded my expectations. Definitely using them again!",
+    subject: "Computer Science",
+    grade: "A+ (92%)"
+  },
+  {
+    id: 7,
+    name: "Lily Wong",
+    country: "Hong Kong",
+    university: "Hong Kong University",
+    rating: 5,
+    text: "Ace Your Studies saved my semester! My International Business assignment was challenging but they delivered exceptional work with detailed market analysis. 100% human-written quality shows in every paragraph. Got 84%!",
+    subject: "International Business",
+    grade: "A- (84%)"
+  },
+  {
+    id: 8,
+    name: "Ahmed Hassan",
+    country: "United Kingdom",
+    university: "London School of Economics",
+    rating: 5,
+    text: "Outstanding support for my Economics dissertation. The econometric analysis was sophisticated and the writing was clear and academic. They truly understand what UK universities expect. Achieved 76% - a solid First!",
+    subject: "Economics",
+    grade: "First Class (76%)"
+  }
+];
+
+export const sampleAssignments = [
+  {
+    id: 1,
+    title: "Digital Marketing Strategy Analysis",
+    subject: "Marketing",
+    type: "Report",
+    grade: "A (85%)",
+    university: "University of Manchester",
+    wordCount: 3500,
+    coverColor: "from-blue-600 to-cyan-600"
+  },
+  {
+    id: 2,
+    title: "Corporate Finance & Investment Analysis",
+    subject: "Finance",
+    type: "Case Study",
+    grade: "First Class (78%)",
+    university: "London School of Economics",
+    wordCount: 4200,
+    coverColor: "from-emerald-600 to-teal-600"
+  },
+  {
+    id: 3,
+    title: "Nursing Care Plan & Critical Reflection",
+    subject: "Nursing",
+    type: "Essay",
+    grade: "A- (82%)",
+    university: "King's College London",
+    wordCount: 2800,
+    coverColor: "from-rose-600 to-pink-600"
+  },
+  {
+    id: 4,
+    title: "Business Strategy & Competitive Analysis",
+    subject: "Business Management",
+    type: "Dissertation",
+    grade: "High Distinction (88%)",
+    university: "University of Melbourne",
+    wordCount: 12000,
+    coverColor: "from-amber-600 to-orange-600"
+  }
+];
+
+export const services = [
+  {
+    id: 1,
+    title: "Custom Assignment Writing",
+    description: "High-quality, fully researched, plagiarism-free assignments written specifically according to your instructions, module brief, and grading rubric.",
+    features: [
+      "100% human-written content",
+      "Tailored to your specific requirements",
+      "Comprehensive research and analysis",
+      "Proper academic referencing",
+      "Free plagiarism report included"
+    ]
+  },
+  {
+    id: 2,
+    title: "Essays & Reports",
+    description: "Analytical, reflective, critical, or research-based essays and reports crafted by subject experts with deep understanding of academic writing standards.",
+    features: [
+      "All essay types covered",
+      "Critical analysis and evaluation",
+      "Structured arguments with evidence",
+      "Academic tone and style",
+      "Unlimited revisions"
+    ]
+  },
+  {
+    id: 3,
+    title: "Dissertations & Research Projects",
+    description: "Comprehensive support ranging from proposal drafting to full dissertation writing, literature reviews, data analysis, and proofreading.",
+    features: [
+      "Proposal to final submission",
+      "Extensive literature reviews",
+      "Methodology design support",
+      "Data analysis and interpretation",
+      "Chapter-by-chapter delivery"
+    ]
+  },
+  {
+    id: 4,
+    title: "Coursework & Weekly Tasks",
+    description: "Timely help with continuous assessments, weekly activities, Moodle tasks, and module-based assignments.",
+    features: [
+      "Quick turnaround times",
+      "Module-specific guidance",
+      "Consistent quality",
+      "Ongoing support available",
+      "Flexible scheduling"
+    ]
+  },
+  {
+    id: 5,
+    title: "Editing & Proofreading",
+    description: "Professional refinement of your existing drafts, ensuring improved clarity, academic tone, structure, referencing, and originality.",
+    features: [
+      "Grammar and spelling corrections",
+      "Structure improvement",
+      "Referencing accuracy check",
+      "Plagiarism removal",
+      "Academic tone enhancement"
+    ]
+  },
+  {
+    id: 6,
+    title: "Presentations & Study Support",
+    description: "Visually appealing PPT presentations and comprehensive exam preparation guidance to help you succeed.",
+    features: [
+      "Professional slide design",
+      "Clear content structure",
+      "Visual aids and graphics",
+      "Speaker notes included",
+      "Exam preparation guidance"
+    ]
+  }
+];
