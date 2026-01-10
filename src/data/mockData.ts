@@ -102,7 +102,7 @@ export const books = [
     university: "London School of Economics",
     wordCount: 4200,
     coverColor: "from-emerald-600 to-teal-600",
-    pdfUrl: "/pdfs/finance-analysis.pdf",
+    // pdfUrl: "/pdfs/finance-analysis.pdf",
   },
   {
     id: 3,
@@ -113,7 +113,7 @@ export const books = [
     university: "King's College London",
     wordCount: 2800,
     coverColor: "from-rose-600 to-pink-600",
-    pdfUrl: "/pdfs/nursing-care.pdf",
+    // pdfUrl: "/pdfs/nursing-care.pdf",
   },
   {
     id: 4,
@@ -124,7 +124,7 @@ export const books = [
     university: "University of Melbourne",
     wordCount: 12000,
     coverColor: "from-amber-600 to-orange-600",
-    pdfUrl: "/pdfs/business-strategy.pdf",
+    // pdfUrl: "/pdfs/business-strategy.pdf",
   },
 ];
 
