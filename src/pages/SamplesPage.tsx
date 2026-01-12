@@ -1,33 +1,58 @@
 import { useState, useEffect } from 'react';
 import { BookOpen, Award, FileText, ChevronLeft, ChevronRight, X } from 'lucide-react';
-// 1. Change the import to 'books'
-import { books } from '../data/mockData';
+import { API_BASE_URL } from '../config';
+
+interface Sample {
+  id: number;
+  title: string;
+  subject: string;
+  type: string;
+  grade: string;
+  university: string;
+  wordCount: number;
+  coverColor: string;
+  pdfUrl?: string;
+}
 
 export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' | 'services' | 'about' | 'samples' | 'contact') => void }) {
+  const [books, setBooks] = useState<Sample[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAutoPlaying || selectedPdf) return;
+    fetch(`${API_BASE_URL}/get_samples.php`)
+      .then(res => res.json())
+      .then(data => {
+        setBooks(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!isAutoPlaying || selectedPdf || books.length === 0) return;
 
     const timer = setInterval(() => {
-      // 2. Update usage here
       setCurrentIndex((prev) => (prev + 1) % books.length);
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [isAutoPlaying, selectedPdf]);
+  }, [isAutoPlaying, selectedPdf, books.length]);
 
   const nextSlide = () => {
+    if (books.length === 0) return;
     setIsAutoPlaying(false);
-    // 2. Update usage here
     setCurrentIndex((prev) => (prev + 1) % books.length);
   };
 
   const prevSlide = () => {
+    if (books.length === 0) return;
     setIsAutoPlaying(false);
-    // 2. Update usage here
     setCurrentIndex((prev) => (prev - 1 + books.length) % books.length);
   };
 
@@ -36,10 +61,16 @@ export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' 
     setCurrentIndex(index);
   };
 
-  const openPdf = (url: string) => {
-    setIsAutoPlaying(false);
-    setSelectedPdf(url);
+  const openPdf = (url?: string) => {
+    if (url) {
+      setIsAutoPlaying(false);
+      setSelectedPdf(url);
+    }
   };
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading Samples...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 relative">
@@ -70,7 +101,7 @@ export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' 
         </div>
       )}
 
-      {/* Header Section ... */}
+      {/* Header Section */}
       <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
@@ -86,162 +117,162 @@ export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' 
       </section>
 
       {/* 3D Gallery Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              3D Book Preview Gallery
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Click on the center book to preview the full document
-            </p>
-          </div>
+      {books.length > 0 && (
+        <section className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-16 text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                3D Book Preview Gallery
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Click on the center book to preview the full document
+              </p>
+            </div>
 
-          <div className="relative">
-            <div className="perspective-1000">
-              <div className="relative h-[500px] flex items-center justify-center">
-                {/* 2. Update usage here: Map over 'books' */}
-                {books.map((assignment, index) => {
-                  const offset = index - currentIndex;
-                  const absOffset = Math.abs(offset);
+            <div className="relative">
+              <div className="perspective-1000">
+                <div className="relative h-[500px] flex items-center justify-center">
+                  {books.map((assignment, index) => {
+                    const offset = index - currentIndex;
+                    const absOffset = Math.abs(offset);
 
-                  let transform = '';
-                  let zIndex = 0;
-                  let opacity = 0;
+                    let transform = '';
+                    let zIndex = 0;
+                    let opacity = 0;
 
-                  if (absOffset === 0) {
-                    transform = 'translateX(0) translateZ(0) rotateY(0deg) scale(1)';
-                    zIndex = 40;
-                    opacity = 1;
-                  } else if (offset === 1) {
-                    transform = 'translateX(60%) translateZ(-200px) rotateY(-25deg) scale(0.85)';
-                    zIndex = 30;
-                    opacity = 0.7;
-                  } else if (offset === -1) {
-                    transform = 'translateX(-60%) translateZ(-200px) rotateY(25deg) scale(0.85)';
-                    zIndex = 30;
-                    opacity = 0.7;
-                  } else if (absOffset === 2) {
-                    transform = offset > 0
-                      ? 'translateX(100%) translateZ(-400px) rotateY(-45deg) scale(0.7)'
-                      : 'translateX(-100%) translateZ(-400px) rotateY(45deg) scale(0.7)';
-                    zIndex = 20;
-                    opacity = 0.4;
-                  }
+                    if (absOffset === 0) {
+                      transform = 'translateX(0) translateZ(0) rotateY(0deg) scale(1)';
+                      zIndex = 40;
+                      opacity = 1;
+                    } else if (offset === 1) {
+                      transform = 'translateX(60%) translateZ(-200px) rotateY(-25deg) scale(0.85)';
+                      zIndex = 30;
+                      opacity = 0.7;
+                    } else if (offset === -1) {
+                      transform = 'translateX(-60%) translateZ(-200px) rotateY(25deg) scale(0.85)';
+                      zIndex = 30;
+                      opacity = 0.7;
+                    } else if (absOffset === 2) {
+                      transform = offset > 0
+                        ? 'translateX(100%) translateZ(-400px) rotateY(-45deg) scale(0.7)'
+                        : 'translateX(-100%) translateZ(-400px) rotateY(45deg) scale(0.7)';
+                      zIndex = 20;
+                      opacity = 0.4;
+                    }
 
-                  return (
-                    <div
-                      key={assignment.id}
-                      className={`absolute transition-all duration-700 ease-in-out ${absOffset === 0 ? 'cursor-pointer' : ''}`}
-                      style={{
-                        transform,
-                        zIndex,
-                        opacity: absOffset > 2 ? 0 : opacity,
-                        pointerEvents: absOffset === 0 ? 'auto' : 'none'
-                      }}
-                      onClick={() => {
-                        if (absOffset === 0) {
-                          openPdf(assignment.pdfUrl || '');
-                        }
-                      }}
-                    >
-                      <div className="w-80 h-96 relative">
-                        <div className="book-container">
-                          <div className="book">
-                            <div className={`book-cover bg-gradient-to-br ${assignment.coverColor} rounded-r-lg shadow-2xl p-8 flex flex-col justify-between relative overflow-hidden`}>
-                              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                              <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12"></div>
+                    return (
+                      <div
+                        key={assignment.id}
+                        className={`absolute transition-all duration-700 ease-in-out ${absOffset === 0 ? 'cursor-pointer' : ''}`}
+                        style={{
+                          transform,
+                          zIndex,
+                          opacity: absOffset > 2 ? 0 : opacity,
+                          pointerEvents: absOffset === 0 ? 'auto' : 'none'
+                        }}
+                        onClick={() => {
+                          if (absOffset === 0) {
+                            openPdf(assignment.pdfUrl);
+                          }
+                        }}
+                      >
+                        <div className="w-80 h-96 relative">
+                          <div className="book-container">
+                            <div className="book">
+                              <div className={`book-cover bg-gradient-to-br ${assignment.coverColor} rounded-r-lg shadow-2xl p-8 flex flex-col justify-between relative overflow-hidden`}>
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                                <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12"></div>
 
-                              <div className="relative z-10">
-                                <div className="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full mb-4">
-                                  <span className="text-white text-xs font-bold uppercase tracking-wider">
-                                    {assignment.type}
-                                  </span>
-                                </div>
-                                <h3 className="text-white font-bold text-2xl leading-tight mb-2">
-                                  {assignment.title}
-                                </h3>
-                                <div className="h-1 w-16 bg-white/50 rounded"></div>
-                              </div>
-
-                              <div className="relative z-10">
-                                <div className="space-y-2 text-white/90">
-                                  <div className="flex items-center space-x-2">
-                                    <FileText className="w-4 h-4" />
-                                    <span className="text-sm font-medium">{assignment.subject}</span>
+                                <div className="relative z-10">
+                                  <div className="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full mb-4">
+                                    <span className="text-white text-xs font-bold uppercase tracking-wider">
+                                      {assignment.type}
+                                    </span>
                                   </div>
-                                  <div className="flex items-center space-x-2">
-                                    <BookOpen className="w-4 h-4" />
-                                    <span className="text-sm">{assignment.wordCount} words</span>
+                                  <h3 className="text-white font-bold text-2xl leading-tight mb-2">
+                                    {assignment.title}
+                                  </h3>
+                                  <div className="h-1 w-16 bg-white/50 rounded"></div>
+                                </div>
+
+                                <div className="relative z-10">
+                                  <div className="space-y-2 text-white/90">
+                                    <div className="flex items-center space-x-2">
+                                      <FileText className="w-4 h-4" />
+                                      <span className="text-sm font-medium">{assignment.subject}</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <BookOpen className="w-4 h-4" />
+                                      <span className="text-sm">{assignment.wordCount} words</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <Award className="w-4 h-4" />
+                                      <span className="text-sm font-bold">{assignment.grade}</span>
+                                    </div>
                                   </div>
-                                  <div className="flex items-center space-x-2">
-                                    <Award className="w-4 h-4" />
-                                    <span className="text-sm font-bold">{assignment.grade}</span>
+                                  <div className="mt-4 pt-4 border-t border-white/30">
+                                    <p className="text-white/80 text-xs leading-relaxed">
+                                      {assignment.university}
+                                    </p>
                                   </div>
                                 </div>
-                                <div className="mt-4 pt-4 border-t border-white/30">
-                                  <p className="text-white/80 text-xs leading-relaxed">
-                                    {assignment.university}
-                                  </p>
+                                
+                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                  <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/50 text-white font-semibold flex items-center gap-2">
+                                    <BookOpen className="w-5 h-5" />
+                                    View PDF
+                                  </div>
                                 </div>
                               </div>
-                              
-                              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/50 text-white font-semibold flex items-center gap-2">
-                                  <BookOpen className="w-5 h-5" />
-                                  View PDF
-                                </div>
-                              </div>
+                              <div className="book-spine bg-gradient-to-b from-gray-700 to-gray-900"></div>
                             </div>
-                            <div className="book-spine bg-gradient-to-b from-gray-700 to-gray-900"></div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
+
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 p-4 rounded-full shadow-xl z-50 transition-all hover:scale-110"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-800" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 p-4 rounded-full shadow-xl z-50 transition-all hover:scale-110"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-800" />
+              </button>
             </div>
 
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 p-4 rounded-full shadow-xl z-50 transition-all hover:scale-110"
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-800" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 p-4 rounded-full shadow-xl z-50 transition-all hover:scale-110"
-            >
-              <ChevronRight className="w-6 h-6 text-gray-800" />
-            </button>
-          </div>
+            <div className="flex justify-center space-x-3 mt-12">
+              {books.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`transition-all duration-300 rounded-full ${
+                    index === currentIndex
+                      ? 'w-12 h-3 bg-gradient-to-r from-cyan-500 to-blue-600'
+                      : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
 
-          <div className="flex justify-center space-x-3 mt-12">
-            {/* 2. Update usage here */}
-            {books.map((_, index) => (
+            <div className="text-center mt-8">
               <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentIndex
-                    ? 'w-12 h-3 bg-gradient-to-r from-cyan-500 to-blue-600'
-                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
-                }`}
-              />
-            ))}
+                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+              >
+                {isAutoPlaying ? 'Pause Auto-Play' : 'Resume Auto-Play'}
+              </button>
+            </div>
           </div>
-
-          <div className="text-center mt-8">
-            <button
-              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
-            >
-              {isAutoPlaying ? 'Pause Auto-Play' : 'Resume Auto-Play'}
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Grid Section */}
       <section className="py-16 px-4 bg-white">
@@ -256,11 +287,10 @@ export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' 
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* 2. Update usage here */}
             {books.map((assignment) => (
               <div
                 key={assignment.id}
-                onClick={() => openPdf(assignment.pdfUrl || '')}
+                onClick={() => openPdf(assignment.pdfUrl)}
                 className="bg-white border-2 border-gray-200 rounded-xl overflow-hidden hover:border-cyan-500 hover:shadow-xl transition-all duration-300 group cursor-pointer"
               >
                 <div className={`h-32 bg-gradient-to-br ${assignment.coverColor} p-4 flex items-center justify-center relative overflow-hidden`}>
@@ -298,7 +328,7 @@ export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' 
         </div>
       </section>
 
-      {/* Footer CTA ... */}
+      {/* Footer CTA */}
       <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 to-blue-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">

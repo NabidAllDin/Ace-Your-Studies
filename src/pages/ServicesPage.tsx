@@ -1,11 +1,24 @@
+import { useState, useEffect } from 'react';
 import { CheckCircle, FileText, BookOpen, GraduationCap, Edit, Presentation, HeartPulse } from 'lucide-react';
-import { services } from '../data/mockData';
+import { API_BASE_URL } from '../config';
 
 type Props = {
   onNavigate?: (page: 'home' | 'services' | 'about' | 'samples' | 'contact') => void;
 };
 
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  features: string[];
+}
+
 export default function ServicesPage({ onNavigate }: Props) {
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Map IDs to Icons. 
+  // Ensure your Database IDs (1-6) match these keys, or defaults will be used.
   const iconMap: { [key: number]: React.ElementType } = {
     1: FileText,
     2: BookOpen,
@@ -14,6 +27,23 @@ export default function ServicesPage({ onNavigate }: Props) {
     5: CheckCircle,
     6: Presentation
   };
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/get_services.php`)
+      .then((res) => res.json())
+      .then((data) => {
+        setServices(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching services:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading Services...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -32,7 +62,9 @@ export default function ServicesPage({ onNavigate }: Props) {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service) => {
-              const Icon = iconMap[service.id];
+              // Fallback to FileText if ID doesn't match
+              const Icon = iconMap[service.id] || FileText; 
+              
               return (
                 <div
                   key={service.id}
