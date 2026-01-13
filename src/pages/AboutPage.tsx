@@ -15,7 +15,7 @@ export default function AboutPage() {
   }, []);
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return <div className="min-h-screen flex items-center justify-center">Loading About...</div>;
   }
 
   return (
