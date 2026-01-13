@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HomePage from './pages/Homepage';
 import ServicesPage from './pages/ServicesPage';
@@ -7,33 +8,20 @@ import SamplesPage from './pages/SamplesPage';
 import ContactPage from './pages/ContactPage';
 import CostCalculator from './components/CostCalculator';
 
-type Page = 'home' | 'services' | 'about' | 'samples' | 'contact';
-
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
   const [showCalculator, setShowCalculator] = useState(false);
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage onNavigate={setCurrentPage} />;
-      case 'services':
-        return <ServicesPage onNavigate={setCurrentPage} />;
-      case 'about':
-        return <AboutPage onNavigate={setCurrentPage} />;
-      case 'samples':
-        return <SamplesPage onNavigate={setCurrentPage} />;
-      case 'contact':
-        return <ContactPage />;
-      default:
-        return <HomePage onNavigate={setCurrentPage} />;
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
-      {renderPage()}
+      <Navigation />
+      
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/samples" element={<SamplesPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
 
       <button
         onClick={() => setShowCalculator(true)}

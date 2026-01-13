@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import Hook
 import { BookOpen, Award, FileText, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { API_BASE_URL } from '../config';
 
@@ -14,7 +15,9 @@ interface Sample {
   pdfUrl?: string;
 }
 
-export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' | 'services' | 'about' | 'samples' | 'contact') => void }) {
+export default function SamplesPage() { // Removed { onNavigate }
+  const navigate = useNavigate();       // Use Hook
+
   const [books, setBooks] = useState<Sample[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -337,7 +340,7 @@ export default function SamplesPage({ onNavigate }: { onNavigate: (page: 'home' 
           <p className="text-xl text-white/90 mb-8">
             Get the same quality and expertise for your assignments
           </p>
-          <button onClick={() => onNavigate('contact')} className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
+          <button onClick={() => navigate('/contact')} className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl">
             Request Your Assignment
           </button>
         </div>

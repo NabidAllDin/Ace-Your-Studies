@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import Hook
 import { CheckCircle, BookOpen, Users, Award, Globe, ArrowRight, Star } from 'lucide-react';
 import { API_BASE_URL } from '../config';
 
-// Define Interfaces for your data
+// Removed Interface HomePageProps entirely
+
+// Define Data Interfaces
 interface Review {
   id: number;
   name: string;
@@ -25,19 +28,14 @@ interface Sample {
   coverColor: string;
 }
 
-type Page = 'home' | 'services' | 'about' | 'samples' | 'contact';
-
-interface HomePageProps {
-  onNavigate: (page: Page) => void;
-}
-
-export default function HomePage({ onNavigate }: HomePageProps) {
+export default function HomePage() { // Removed { onNavigate }
+  const navigate = useNavigate();    // Use Hook
+  
   const [reviews, setReviews] = useState<Review[]>([]);
   const [sampleAssignments, setSampleAssignments] = useState<Sample[]>([]);
   const [currentReview, setCurrentReview] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // FETCH DATA
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,7 +48,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         const samplesData = await samplesRes.json();
 
         setReviews(reviewsData);
-        // Only show first 4 samples on homepage
         setSampleAssignments(samplesData.slice(0, 4)); 
         setLoading(false);
       } catch (error) {
@@ -62,7 +59,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
     fetchData();
   }, []);
 
-  // Timer for review carousel
   useEffect(() => {
     if (reviews.length === 0) return;
     const timer = setInterval(() => {
@@ -85,7 +81,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gradient-to-br from-cyan-50 via-blue-50 to-yellow-50 py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* ... Hero Section Content (Same as before) ... */}
             <div>
               <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Premium Academic Support You Can{' '}
@@ -98,19 +93,20 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => onNavigate('contact')}
+                  onClick={() => navigate('/contact')} 
                   className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <span>Get Started</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
                 <button
-                  onClick={() => onNavigate('samples')}
+                  onClick={() => navigate('/samples')}
                   className="border-2 border-cyan-600 text-cyan-600 px-8 py-4 rounded-lg font-semibold hover:bg-cyan-50 transition-all duration-300"
                 >
                   View Samples
                 </button>
               </div>
+              {/* ... Rest of Stats section ... */}
               <div className="mt-8 flex items-center space-x-2">
                 <CheckCircle className="w-5 h-5 text-green-600" />
                 <span className="text-gray-700 font-semibold">100% Human-Written</span>
@@ -213,7 +209,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               <div
                 key={assignment.id}
                 className="group cursor-pointer"
-                onClick={() => onNavigate('samples')}
+                onClick={() => navigate('/samples')}
               >
                 <div className="relative bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                   <div className={`h-64 bg-gradient-to-br ${assignment.coverColor} p-6 flex flex-col justify-between`}>
@@ -246,7 +242,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
           <div className="text-center">
             <button
-              onClick={() => onNavigate('samples')}
+              onClick={() => navigate('/samples')}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 inline-flex items-center space-x-2"
             >
               <span>View All Samples</span>
@@ -256,7 +252,63 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      {/* ... Remaining sections (Why Choose Us, Footer CTA) are static and stay the same ... */}
+      {/* Why Choose Us & Footer CTA */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Ace Your Studies?</h2>
+            <p className="text-gray-600 text-lg">Excellence that sets us apart</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Strict No-AI Policy',
+                description: '100% human-written content by qualified academic experts. Every assignment is crafted with genuine expertise and deep research.',
+                icon: CheckCircle
+              },
+              {
+                title: 'Proven Track Record',
+                description: '2000+ successfully completed assignments with consistently high grades. Our students achieve excellence.',
+                icon: Award
+              },
+              {
+                title: 'Global Expertise',
+                description: 'Supporting students from UK, US, Australia, Malaysia, Singapore, Hong Kong, Saudi Arabia, and beyond.',
+                icon: Globe
+              }
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-xl border border-cyan-100 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mb-4">
+                  <feature.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-r from-cyan-500 to-blue-600 py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Ready to Ace Your Studies?
+          </h2>
+          <p className="text-xl text-white/90 mb-8">
+            Join thousands of successful students worldwide. Get expert help today.
+          </p>
+          <button
+            onClick={() => navigate('/contact')}
+            className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl"
+          >
+            Contact Us Now
+          </button>
+        </div>
+      </section>
     </div>
   );
 }

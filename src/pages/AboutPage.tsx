@@ -1,10 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { Award, Shield, Target, Users, Globe2, TrendingUp, CheckCircle2, Heart } from 'lucide-react';
 
-type Props = {
-  onNavigate?: (page: 'home' | 'services' | 'about' | 'samples' | 'contact') => void;
-};
+// Removed Props Type
 
-export default function AboutPage({ onNavigate }: Props) {
+export default function AboutPage() { // Removed { onNavigate }
+  const navigate = useNavigate();     // Use Hook
+
   return (
     <div className="min-h-screen bg-gray-50">
       <section className="bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 py-20 px-4">
@@ -18,6 +19,7 @@ export default function AboutPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Mission Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -55,6 +57,7 @@ export default function AboutPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Values Section */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -92,6 +95,7 @@ export default function AboutPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* What Makes Us Different Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -141,6 +145,7 @@ export default function AboutPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Global Reach Section */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -197,6 +202,7 @@ export default function AboutPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Footer CTA */}
       <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 to-blue-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
@@ -206,7 +212,7 @@ export default function AboutPage({ onNavigate }: Props) {
             Be part of thousands of students who achieved academic excellence with our support
           </p>
           <button 
-            onClick={() => onNavigate?.('contact')}
+            onClick={() => navigate('/contact')} 
             className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl"
           >
             Get Started Today

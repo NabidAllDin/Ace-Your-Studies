@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { CheckCircle, FileText, BookOpen, GraduationCap, Edit, Presentation, HeartPulse } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // Import Hook
+import { CheckCircle, FileText, BookOpen, GraduationCap, Edit, Presentation } from 'lucide-react';
 import { API_BASE_URL } from '../config';
 
-type Props = {
-  onNavigate?: (page: 'home' | 'services' | 'about' | 'samples' | 'contact') => void;
-};
+// Removed Props Type
 
 interface Service {
   id: number;
@@ -13,12 +12,12 @@ interface Service {
   features: string[];
 }
 
-export default function ServicesPage({ onNavigate }: Props) {
+export default function ServicesPage() { // Removed { onNavigate }
+  const navigate = useNavigate();        // Use Hook
+
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Map IDs to Icons. 
-  // Ensure your Database IDs (1-6) match these keys, or defaults will be used.
   const iconMap: { [key: number]: React.ElementType } = {
     1: FileText,
     2: BookOpen,
@@ -58,11 +57,11 @@ export default function ServicesPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Services Grid */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service) => {
-              // Fallback to FileText if ID doesn't match
               const Icon = iconMap[service.id] || FileText; 
               
               return (
@@ -98,6 +97,7 @@ export default function ServicesPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Disciplines Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -137,6 +137,7 @@ export default function ServicesPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Custom Support CTA */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl p-12 text-center shadow-2xl">
@@ -147,7 +148,7 @@ export default function ServicesPage({ onNavigate }: Props) {
               Don't see exactly what you need? We offer personalized academic support tailored to your specific requirements.
             </p>
             <button 
-              onClick={() => onNavigate?.('contact')}
+              onClick={() => navigate('/contact')} 
               className="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-xl"
             >
               Contact Us for Custom Solutions
@@ -156,6 +157,7 @@ export default function ServicesPage({ onNavigate }: Props) {
         </div>
       </section>
 
+      {/* Process Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
