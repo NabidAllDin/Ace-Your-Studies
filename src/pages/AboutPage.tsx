@@ -1,10 +1,22 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Award, Shield, Target, Users, Globe2, TrendingUp, CheckCircle2, Heart } from 'lucide-react';
 
-// Removed Props Type
+export default function AboutPage() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
-export default function AboutPage() { // Removed { onNavigate }
-  const navigate = useNavigate();     // Use Hook
+  // Simulate loading delay for consistency
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800); // 0.8 second delay
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
