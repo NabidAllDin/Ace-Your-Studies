@@ -3,7 +3,7 @@ import { Mail, MessageSquare, Phone, MapPin, Send, Clock, CheckCircle } from 'lu
 import { API_BASE_URL } from '../config';
 
 export default function ContactPage() {
-  const [loading, setLoading] = useState(true); // Initial Page Loading
+  const [loading, setLoading] = useState(true);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -18,7 +18,6 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Simulate loading delay for consistency
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -72,7 +71,7 @@ export default function ContactPage() {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading Contact...</div>;
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
   return (
@@ -98,7 +97,7 @@ export default function ContactPage() {
                 content: 'aceyourstudies.info@gmail.com',
                 subtext: 'We reply within 24 hours',
                 color: 'from-blue-500 to-cyan-600',
-                action: () => window.location.href = 'mailto:aceyourstudies.info@gmail.com'
+                action: () => {} // REMOVED: No longer redirects
               },
               {
                 icon: MessageSquare,
@@ -119,7 +118,7 @@ export default function ContactPage() {
             ].map((contact, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all group cursor-pointer"
+                className={`bg-white rounded-xl shadow-lg p-8 transition-all group ${contact.title === 'WhatsApp' ? 'cursor-pointer hover:shadow-2xl' : ''}`}
                 onClick={contact.action}
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${contact.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
@@ -132,6 +131,7 @@ export default function ContactPage() {
             ))}
           </div>
 
+          {/* ... The rest of the Form Section stays exactly the same ... */}
           <div className="grid lg:grid-cols-2 gap-12">
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
@@ -317,6 +317,7 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
